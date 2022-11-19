@@ -7,13 +7,13 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Integer> integers = new ArrayList<>();
         ArrayList<String> strings = new ArrayList<>();
-        Klatka<Integer> doubleKlatka = new Klatka<>();
+//        Klatka<Integer> doubleKlatka = new Klatka<>();
     }
 
 
 
-    private static <T> T printArray(List<T> arr) {
-        T element = arr.get(0);
+    private static <T> T printArray(List<T> arr) {          //typ wyniku metody i typ parametru metody
+        T element = arr.get(0);             //zmienna typu generycznego
         arr.forEach(System.out::println);
         return arr.get(0);
     }
