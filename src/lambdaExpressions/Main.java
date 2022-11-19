@@ -28,7 +28,7 @@ public class Main {
         }
         };
 
-        System.out.println(predicateTest.test(new Student("Borys",40,"123123123"));//true
+        System.out.println(predicateTest.test(new Student("Borys",40,"123123123")));//true
 
         Function<String, File> xxx = s -> new File(s);
         Function<String, Integer> f = String::length;
