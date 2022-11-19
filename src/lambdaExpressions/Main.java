@@ -16,8 +16,19 @@ public class Main {
 
         System.out.println(sc.connect("essa","wariacie",","));
 
+        //klasa anonimowa
+        Predicate<Student> predicateTest = new Predicate<Student>() {
+            @Override
+            public boolean test(Student student) {
+                if(student.getAge()>30){
+                return true;
+            }else {
+                    return false;
+                }
+        }
+        };
 
-
+        System.out.println(predicateTest.test(new Student("Borys",40,"123123123"));//true
 
         Function<String, File> xxx = s -> new File(s);
         Function<String, Integer> f = String::length;
