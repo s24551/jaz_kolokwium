@@ -85,6 +85,7 @@ public class Main {
         System.out.println(functionApplier.apply("Witam serdecznie"));
 
         //******************************************
+        System.out.println("");
         Predicate<Student> over30 = student -> student.getAge()>30;
     Consumer<String> print = t -> System.out.println(t);
     Supplier<List<Student>> supplyPredefinedStudents = () -> createData();
