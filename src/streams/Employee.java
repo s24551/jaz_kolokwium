@@ -7,7 +7,9 @@ import lombok.ToString;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Getter
@@ -48,9 +50,61 @@ public class Employee {
 
         System.out.println();
 
-        employees.stream()
+        List<List<String>> collect = employees.stream() //ctrl + alt + v && option + cmd + v tworzenie zmiennej
+                .map(employee -> employee.getSkills())  //zmieniamy z calego obiektu na umiejetnosci
+                .collect(Collectors.toList());  //tworzymy jedna liste ze wszystkimi listami umiejetnosciami (listy w liscie)
+        System.out.println(collect);
+        System.out.println();
+
+        List<String> collect1 = employees.stream()
                 .map(employee -> employee.getSkills())
-                .collect(Collectors.toList());
+                .flatMap(list -> list.stream())     //tworzymy liste z pojedynczymi umiejetnosciami (jedna lista)
+                .distinct()            //usuwa duplikaty z listy
+                .collect(Collectors.toList());      //przypisanie do listy
+        System.out.println(collect1);
+        System.out.println();
+         employees.stream()
+                .filter(employee -> employee.getAge() > 20)                     //jesli wiek jest wiekszy niz 20 to dodaj do strumienia
+                 .filter(employee -> employee.getFirstName().startsWith("J"))   //jesli imie zaczyna sie na J to dodaj do strumienia
+                 .forEach(employee -> System.out.println(employee));            //wypisz obiekty ktore przeszly filtrowanie
+        System.out.println();
+
+        List<String> collect2 = employees.stream()
+                .sorted(Comparator.comparing(employee -> employee.getAge()))    //sortujemy wszystkie obiekty rosnaco
+                .map(employee -> employee.getAge() + " " + employee.firstName)                //wyciagamy tylko wiek i wiek osoby
+                .collect(Collectors.toList());                      //przypisujemy do listy
+        System.out.println(collect2);
+        System.out.println();
+
+        employees.stream()
+                .sorted(Comparator.comparing(employee -> employee.getAge()))            //sortujemy rosnaco
+                .limit(2)                           //bierzemy tylko pierwsze dwa
+                .map(employee -> employee.getAge() + " " + employee.getFirstName())     //bierzemy wiek i imie dwoch pierwszych obiektow
+                .forEach(employee -> System.out.println(employee));
+        System.out.println();
+        List<String> strings = employees.stream()
+                .sorted(Comparator.comparing(employee -> employee.getAge()))            //sortujemy rosnaco
+                .skip(2)                           //pomijamy pierwsze dwa i bierzemy wszystkie po
+                .map(employee -> employee.getAge() + " " + employee.getFirstName())     //bierzemy wiek i imie wszystkich oprocz pierwszych dwoch
+                .toList();
+        System.out.println(strings);
+        System.out.println();
+
+        long count = employees.stream()
+                .filter(employee -> employee.getFirstName().startsWith("K"))
+                .count();       //zlicza ilosc elementow w strumieniu
+        System.out.println(count);
+        System.out.println();
+
+        Employee youngestEmployee = employees.stream()
+                .min(Comparator.comparing(employee -> employee.getAge())).get();                //najmniejszy wiek
+        System.out.println(youngestEmployee.getAge() + youngestEmployee.getFirstName());
+
+        Employee oldestEmployee = employees.stream()
+                .max(Comparator.comparing(employee -> employee.getAge())).get();                //najwiekszy
+        System.out.println(oldestEmployee.getAge() + oldestEmployee.getFirstName());
+
+
 
     }
 
