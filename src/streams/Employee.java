@@ -110,8 +110,45 @@ public class Employee {
                 .findFirst().get();                                                 //przesylamy tylko pierwszy obiekt spelniajacy filtracje
                                     //opcjonalnie mozna zmienic na findAny wtedy bierze losoy obiekt spelniajacy warunek filtracji
         System.out.println(firstEmployerWithNameStartsWithJ.firstName);
+        System.out.println();
+        boolean allMatch = employees.stream()
+                .allMatch(employee -> employee.getAge() > 30);//sprawdzamy czy wszystkie obiekty spelniaja warunek >30
+        System.out.println(allMatch);
+        System.out.println();
+        boolean anyMatch = employees.stream()
+                .anyMatch(employee -> employee.getAge() > 30);      //sprawdzamy czy jakikolwiek obiekt spelnia warunek >30
+        System.out.println(anyMatch);
+        System.out.println();
+
+        Integer sumOfAllAges = employees.stream()
+                .map(employee -> employee.getAge())         //musimy zmapowac na typ ktorego potrzebujemy
+                .reduce((age1, age2) -> age1 + age2)    //wypisujemy logike
+                .get();                                 //sciagamy wynik logiki
+        System.out.println(sumOfAllAges);
+        System.out.println();
+
+        Integer sumOfAllAges2 = employees.stream()
+                .map(employee -> employee.getAge())                         //musimy zmapowac na typ ktorego potrzebujemy
+                .reduce(10,(age1, age2) -> age1 + age2);            //nadajemy wartosc poczatkowa a nastepnie logike do niej
+        System.out.println(sumOfAllAges2);
+        System.out.println();
+
+        String namesWithPrzecinek = employees.stream()
+                .map(employee -> employee.getFirstName())
+                .reduce((name1, name2) -> name1 + ", " + name2) //dodanie przecinka miedzy imionami
+                .get();
+        System.out.println(namesWithPrzecinek);
+
+        employees.stream()
+                .sorted(Comparator.comparing(employee -> employee.getAge()))
+                .takeWhile(employee -> employee.getAge() < 30)                  //wykonuj dopoki nie przekroczy 30
+                .forEach(employee -> System.out.println(employee));
+
+
+
 
     }
+
 
     private String firstName;
     private String lastName;
