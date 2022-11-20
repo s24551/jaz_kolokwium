@@ -99,12 +99,16 @@ public class Employee {
         Employee youngestEmployee = employees.stream()
                 .min(Comparator.comparing(employee -> employee.getAge())).get();                //najmniejszy wiek
         System.out.println(youngestEmployee.getAge() + youngestEmployee.getFirstName());
-
+        System.out.println();
         Employee oldestEmployee = employees.stream()
-                .max(Comparator.comparing(employee -> employee.getAge())).get();                //najwiekszy
+                .max(Comparator.comparing(employee -> employee.getAge())).get();                //najwiekszy wiek
         System.out.println(oldestEmployee.getAge() + oldestEmployee.getFirstName());
+        System.out.println();
 
-
+        Employee firstEmployerWithNameStartsWithJ = employees.stream()
+                .filter(employee -> employee.getFirstName().startsWith("J"))        //najpierw filtrujemy
+                .findFirst().get();                                                 //przesylamy tylko pierwszy obiekt spelniajacy filtracje opcjonalnie mozna zmienic na findAny wtedy bierze losoy obiekt spelniajacy warunek filtraci
+        System.out.println(firstEmployerWithNameStartsWithJ.firstName);
 
     }
 
