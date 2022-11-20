@@ -107,7 +107,8 @@ public class Employee {
 
         Employee firstEmployerWithNameStartsWithJ = employees.stream()
                 .filter(employee -> employee.getFirstName().startsWith("J"))        //najpierw filtrujemy
-                .findFirst().get();                                                 //przesylamy tylko pierwszy obiekt spelniajacy filtracje opcjonalnie mozna zmienic na findAny wtedy bierze losoy obiekt spelniajacy warunek filtraci
+                .findFirst().get();                                                 //przesylamy tylko pierwszy obiekt spelniajacy filtracje
+                                    //opcjonalnie mozna zmienic na findAny wtedy bierze losoy obiekt spelniajacy warunek filtracji
         System.out.println(firstEmployerWithNameStartsWithJ.firstName);
 
     }
