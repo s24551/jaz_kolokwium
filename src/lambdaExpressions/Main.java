@@ -78,21 +78,22 @@ public class Main {
 
 
         Predicate<String> testPredicate2 = name -> name.length() > 3;
-        System.out.println(testPredicate2.test("ea"));
+        System.out.println(testPredicate2.test("ea"));      //zwraca false
 
         //Function - przyjmuje obiekt na wejściu i zwraca obiekt na wyjściu (funkcja)
         Function<String, Integer> functionApplier = s -> s.length();        //dajemy stringa otrzymujemy integer
-        System.out.println(functionApplier.apply("Witam serdecznie"));
+        System.out.println(functionApplier.apply("Witam serdecznie"));      //wynik 16
 
         //******************************************
         System.out.println("");
-        Predicate<Student> over30 = student -> student.getAge()>30;
-    Consumer<String> print = t -> System.out.println(t);
+        Predicate<Student> over30 = student -> student.getAge()>30;         //jesli wiek jest wiekszy niz 30 to true
+    Consumer<String> print = t -> System.out.println(t);                    //wypisz to co otrzymales
     Supplier<List<Student>> supplyPredefinedStudents = () -> createData();
-    Function<Student,String> getStudentName = student -> student.getName();
+    Function<Student,String> getStudentName = student -> student.getName(); //z obiektu Studenta bierzemy tylko imiona
 
 
     consumeStudents(filterStudents(supplyPredefinedStudents, over30),getStudentName,print);
+    //(przefiltrujStudentow(zPodanejListy,tylkoTychPowyzej30lat),wyciagnijJegoImie,wypisz
     }
 
 
