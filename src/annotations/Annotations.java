@@ -34,7 +34,9 @@ public class Annotations {
              ) {
             if(field.isAnnotationPresent(ImportantString.class)){
                 field.setAccessible(true);          //name jest private wiec trzeba zmienic modyfikator
-                Object objectValue = field.get(myCat);              //bierzemy wartosc obiektu
+                Object objectValue = field.get(myCat);//bierzemy wartosc obiektu
+                System.out.println();
+                System.out.println(objectValue);
                 if(objectValue instanceof String stringValue){      //jesli wartosc obiektu jest stringiem to przypisujemy do wartosci stringValue
                     System.out.println(stringValue.toUpperCase());      //wypisanie jako String
                 }
