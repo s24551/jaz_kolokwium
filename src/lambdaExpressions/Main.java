@@ -53,7 +53,12 @@ public class Main {
         System.out.println();
         aaa(predicateExample,text);     //lambda w konstruktorze  s -> s.length()>10,text
         System.out.println();
-
+/************************************************************************************
+ *
+ *
+ *
+ *
+ */
         //Supplier - nie przyjmuje żadnego obiektu na wejściu, ale zwraca obiekt (dostawca)
         Supplier<Integer> descriptionSupplier = () -> 12566;
         useSupplier(descriptionSupplier);
