@@ -49,8 +49,10 @@ public class Main {
         String text;
         text = "Przykladowy tekst";
 
-        aaa(s -> s.length() > 10,text);     //lambda w konstruktorze
-
+        Predicate<String> predicateExample = s -> s.length()>10;            //lambda jako zmienna
+        System.out.println();
+        aaa(predicateExample,text);     //lambda w konstruktorze  s -> s.length()>10,text
+        System.out.println();
 
         //Supplier - nie przyjmuje żadnego obiektu na wejściu, ale zwraca obiekt (dostawca)
         Supplier<Integer> descriptionSupplier = () -> 12566;
